@@ -58,7 +58,16 @@
       flex: 1 1 100%; /* Garante que as colunas se ajustem quando necessário */
     }
   
-    
+    .arquitetura {
+        background-color: #ffffff; /* Define o fundo branco */
+        text-align: center; /* Centraliza o texto */
+        display: flex; /* Define o layout flexível */
+        flex-direction: column; /* Organiza o conteúdo em coluna */
+        align-items: center; /* Centraliza horizontalmente */
+        justify-content: center; /* Centraliza verticalmente */
+        padding: 20px; /* Adiciona espaçamento interno */
+    }
+
 
 /* Estilo geral da seção de objetivos */
 
@@ -180,9 +189,9 @@ a, .w3-bar-item, .w3-button {
     <a href="#home" class="w3-bar-item w3-button"><b>Difusão</b> Áudio Wireless</a>
     <div class="w3-right">
       <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
-      <a href="#M1" class="w3-bar-item w3-button">Resultados Esperados</a>
-      <a href="#M2" class="w3-bar-item w3-button">Arquitetura</a>
-      <a href="#Equipa" class="w3-bar-item w3-button">Equipa</a>
+      <a href="#re" class="w3-bar-item w3-button">Resultados Esperados</a>
+      <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
+      <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
       <a href="javascript:void(0);" class="w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="toggleNav()" aria-label="Menu">☰</a>    </div>
   </div>
 </div>
@@ -190,9 +199,9 @@ a, .w3-bar-item, .w3-button {
 <!-- Navbar para telas pequenas -->
 <div id="smallNav" class="w3-bar-block w3-white w3-hide w3-large">
   <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
-  <a href="#M1" class="w3-bar-item w3-button">M1</a>
-  <a href="#M2" class="w3-bar-item w3-button">M2</a>
-  <a href="#Equipa" class="w3-bar-item w3-button">Equipa</a>
+  <a href="#re" class="w3-bar-item w3-button">Resultados Esperados</a>
+  <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
+  <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
   
 </div>
 
@@ -261,7 +270,7 @@ function toggleNav() {
   </div>
 
 
-<div class="feature section-padding" data-scroll-index="2" id="M1">
+<div class="feature section-padding" data-scroll-index="2" id="re">
   
   <div class="container">
     <div class="row">
@@ -308,18 +317,18 @@ function toggleNav() {
 
 <!-------Features End-------> 
 
-<section class="feature section-padding" data-scroll-index="2" id="M2" aria-labelledby="system-architecture-heading">
+<section class="feature section-padding" data-scroll-index="2" id="arq">
     <div class="container">
-      <h2 id="system-architecture-heading">Arquitetura do Sistema</h2>
-      <figure>
-        <img src="arquitetura.png" alt="Diagrama da arquitetura do sistema">
-      </figure>
+      <h2>Arquitetura do Sistema</h2>
+      <br>
+    <img src="arquitetura.png" alt="Diagrama da arquitetura do sistema">
+      
     </div>
   </section>
 
 
 <!-------Team Start------->
-<section class="about section-padding" data-scroll-index='3' id="Equipa">
+<section class="about section-padding" data-scroll-index='3' id="equipa">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
