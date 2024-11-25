@@ -20,12 +20,19 @@
   <meta name="description" content="Conheça o projeto Difusão Áudio e nossa equipe.">
   <meta name="keywords" content="Projeto, Difusão, Áudio, Equipe, Tutores, Alunos">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+ 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    body, h1, h2, h3, h4, h5, h6 {
-      font-family: "Lato", sans-serif;
+    body{
+      font-family: "Montserrat", sans-serif;
+      font-size: 20px;
+    }
+    
+    h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
     }
   
     .w3-bar, h1, button {
@@ -33,7 +40,7 @@
     }
   
     .fa-anchor, .fa-coffee {
-      font-size: 200px;
+      font-size: 20px;
     }
   
     .w3-bar-item:hover, .w3-button:hover {
@@ -62,11 +69,58 @@
         background-color: #ffffff; /* Define o fundo branco */
         text-align: center; /* Centraliza o texto */
         display: flex; /* Define o layout flexível */
-        flex-direction: column; /* Organiza o conteúdo em coluna */
         align-items: center; /* Centraliza horizontalmente */
         justify-content: center; /* Centraliza verticalmente */
         padding: 20px; /* Adiciona espaçamento interno */
     }
+
+.single-feature {
+margin-bottom: 95px;
+margin-top: 60px;
+}
+.single-feature h5 {
+	font-size: 16px;
+}
+.media-right-margin {
+	margin-right:20px;
+}
+.single-feature p {
+	font-size: 19px;
+}
+
+.icon-border span {
+	display: block;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: 100px;
+	color: rgb(48, 116, 206);
+	font-size: 18px;
+	line-height: 50px;
+	border: 1px solid rgb(48, 116, 206);
+}
+
+/* Responsive Styling */
+@media (min-width: 768px) {
+  .arquitetura {
+    padding: 80px 40px; /* Increased padding on larger screens */
+  }
+
+  
+}
+
+@media (min-width: 1024px) {
+  .arquitetura {
+    padding: 100px 60px; /* Further increased padding for wide screens */
+  }
+
+  .arquitetura h2 {
+    font-size: 3rem;
+    justify-content: center;
+
+  }
+}
+
 
 
 /* Estilo geral da seção de objetivos */
@@ -95,27 +149,8 @@
   text-align: center; /* Centers content in the section */
 }
 
-/* Heading Styling */
-.feature h2 {
-  font-size: 2.5rem;
-  color: #333; /* Darker color for better readability */
-  margin-bottom: 20px;
-  font-weight: 700;
-}
 
-/* Image Styling */
-.feature img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px; /* Rounded corners for modern style */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
-}
 
-.feature img:hover {
-  transform: scale(1.05); /* Subtle zoom effect on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Intensified shadow on hover */
-}
 
 /* Responsive Styling */
 @media (min-width: 768px) {
@@ -123,9 +158,7 @@
     padding: 80px 40px; /* Increased padding on larger screens */
   }
 
-  .feature h2 {
-    font-size: 3rem;
-  }
+
 }
 
 @media (min-width: 1024px) {
@@ -133,13 +166,54 @@
     padding: 100px 60px; /* Further increased padding for wide screens */
   }
 
-  .feature h2 {
-    font-size: 3.5rem;
-  }
+ 
 }
 
+
+
+/* General Section Styling */
+.equipa {
+  padding: 60px 20px; /* Adds more space around the section */
+  background-color: #f8f9fa; /* Light gray background for subtle contrast */
+  text-align: center; /* Centers content in the section */
+}
+
+
+/* Image Styling */
+.equipa img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Rounded corners for modern style */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation on hover */
+}
+
+.equipa img:hover {
+  transform: scale(1.05); /* Subtle zoom effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Intensified shadow on hover */
+}
+
+/* Responsive Styling */
+@media (min-width: 768px) {
+  .equipa {
+    padding: 80px 40px; /* Increased padding on larger screens */
+  }
+
+
+}
+
+@media (min-width: 1024px) {
+  .equipa {
+    padding: 100px 60px; /* Further increased padding for wide screens */
+  }
+
+ 
+}
+
+
+
 section, footer, .media-body, .team-detail {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a, .w3-bar-item, .w3-button {
@@ -196,6 +270,7 @@ a, .w3-bar-item, .w3-button {
   </div>
 </div>
 
+
 <!-- Navbar para telas pequenas -->
 <div id="smallNav" class="w3-bar-block w3-white w3-hide w3-large">
   <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
@@ -225,17 +300,17 @@ function toggleNav() {
       <div class="col-md-12">
         <div class="sectioner-header text-center">
           <br>
-          <h3>Contexto</h3>
+          <h2>Contexto</h2>
           <span class="line"></span>
           <br>
           <p>A gestão eficiente de áudio é essencial em espaços como hotéis, centros comerciais, restaurantes e lojas onde diferentes zonas requerem anúncios personalizados ou uma simples música de ambiente.  Este projeto pretende responder a estas necessidades através de um sistema wireless composto por um nó central de controlo e múltiplos recetores distribuidos. Para isso,temos como objetivo aumentar a flexibilidade na gestão de áudio, permitindo uma experiência adaptada a cada zona e garantindo qualidade, simplicidade e eficiência na operação.</p>      
           <br>    
-          <h3>Motivação</h3>
+          <h2>Motivação</h2>
           <span class="line"></span>
           <br>
           <p>A gestão de múltiplas zonas com diferentes necessidades sonoras, quando feita através de sistemas tradicionais baseados em cabos, é frequentemente complexa e pouco flexível. O uso de cabos exige infraestrutura física extensa, instalação trabalhosa e custos elevados de manutenção. Este projeto propõe uma solução wireless e flexível, eliminando a necessidade de cabeamento. Assim, é possível assegurar uma distribuição de áudio intuitiva e com maior facilidade para expansões ou reconfigurações.</p>
           <br>
-          <h3>Objetivos</h3>
+          <h2>Objetivos</h2>
           <span class="line"></span>
           <br>
           <div class="row objectives-row">
@@ -270,13 +345,13 @@ function toggleNav() {
   </div>
 
 
-<div class="feature section-padding" data-scroll-index="2" id="re">
+<section class="feature section-padding" data-scroll-index="1" id="re">
   
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="sectioner-header text-center">
-          <h3>Resultados Esperados</h3>
+          <h2>Resultados Esperados</h2>
           <span class="line"></span>
         </div>
         <div class="section-content">
@@ -286,7 +361,7 @@ function toggleNav() {
                 <span class="fa fa-random" aria-hidden="true"></span>
               </div>
               <div class="media-body text-left">
-                <h4>Sincronização dentro das zonas</h4>
+                <h3>Sincronização dentro das zonas</h3>
                 <p>O sistema garante a perfeita sincronização de áudio em múltiplas zonas, proporcionando uma experiência consistente.</p>
               </div>
             </div>
@@ -295,16 +370,16 @@ function toggleNav() {
                 <span class="fa fa-tv" aria-hidden="true"></span>
               </div>
               <div class="media-body text-left">
-                <h4>Interface amigável para controlo remoto</h4>
+                <h3>Interface amigável para controlo remoto</h3>
                 <p>A interface de controlo remoto é intuitiva, permitindo fácil acesso e ajustes a partir de dispositivos móveis ou desktops.</p>
               </div>
             </div>
             <div class="media single-feature wow fadeInUp" data-wow-delay="0.8s" style="min-width: 250px; max-width: 300px; margin-bottom: 40px;">
               <div class="media-left icon-border media-right-margin">
-                <span class="fa fa-microphone-alt" aria-hidden="true"></span>
+                <span class="fa fa-microphone" aria-hidden="true"></span>
               </div>
               <div class="media-body text-left">
-                <h4>Alta qualidade de áudio</h4>
+                <h3>Alta qualidade de áudio</h3>
                 <p>O sistema assegura uma boa experiência de áudio, sem interrupções ou latência percetível.</p>
               </div>
             </div>
@@ -316,25 +391,26 @@ function toggleNav() {
 </section>
 
 <!-------Features End-------> 
-
-<section class="feature section-padding" data-scroll-index="2" id="arq">
-    <div class="container">
-      <h2>Arquitetura do Sistema</h2>
-      <br>
-    <img src="arquitetura.png" alt="Diagrama da arquitetura do sistema">
-      
+<section class="arquitetura section-padding" data-scroll-index="3" id="arq">
+  <div class="container">
+    <h2>Arquitetura do Sistema</h2>
+    <div class="arquitetura">
+      <img src="arquitetura.png" alt="Diagrama da arquitetura do sistema">
     </div>
-  </section>
+    <br>
+  </div>
+</section>
 
 
 <!-------Team Start------->
-<section class="about section-padding" data-scroll-index='3' id="equipa">
+<section class="team section-padding" data-scroll-index='4' id="equipa">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="sectioner-header text-center">
-          <h3>Equipa</h3>
+          <h2>Equipa</h2>
           <span class="line"></span>
+          <br>
         </div>
         <div class="section-content text-center">
           <div class="row">
@@ -357,6 +433,7 @@ function toggleNav() {
               </div>
             </div>
           </div>
+       
           <div class="section-content text-center">
             <div class="row">
               <div class="col-md-4">
@@ -387,12 +464,12 @@ function toggleNav() {
 <!-------Team End-------> 
 
 <!-------Tutors Start-------> 
-<section class="about section-padding" data-scroll-index='3'>
+<section class="tutores section-padding" data-scroll-index='5'>
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="sectioner-header text-center">
-          <h3>Orientadores</h3>
+          <h2>Orientadores</h2>
           <span class="line"></span>
         </div>
         <div class="section-content text-center">
