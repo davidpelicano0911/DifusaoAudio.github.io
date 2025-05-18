@@ -98,6 +98,20 @@
   }
 }
 
+/* Estilo geral da seção de tecnologias*/
+.card {
+  border: none;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+
 
 
 /* Estilo geral da seção de objetivos */
@@ -178,18 +192,9 @@
   background-color: #ffff; /* Light gray background for subtle contrast */
   text-align: center; /* Centers content in the section */
 }
-
-
-
-
-
-
-
-
   </style>
 </head>
 <body>
-
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -198,6 +203,7 @@
     <div class="w3-right">
       <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
       <a href="#re" class="w3-bar-item w3-button">Resultados Esperados</a>
+      <a href="#tech" class="w3-bar-item w3-button">Tecnologias</a>
       <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
       <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
       <a href="javascript:void(0);" class="w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="toggleNav()" aria-label="Menu">☰</a>    </div>
@@ -211,7 +217,6 @@
   <a href="#re" class="w3-bar-item w3-button">Resultados Esperados</a>
   <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
   <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
-  
 </div>
 
 <script>
@@ -338,6 +343,83 @@ function toggleNav() {
 </section>
 <br>
 
+<section class="feature section-padding" id="tech">
+  <div class="container">
+    <h2 class="text-center">Tecnologias Utilizadas</h2>
+    <span class="line"></span>
+    <br><br>
+
+    <!-- Frontend -->
+    <div class="row align-items-center mb-5 justify-content-center">
+      <div class="col-md-1 text-center">
+        <img src="imagens/tecnologias/front.png" alt="Frontend" class="img-fluid" style="max-height: 80px;">
+      </div>
+      <div class="col-md-11 pl-md-4">
+        <p class="mb-0">
+          HTML, CSS e JavaScript utilizados na construção da interface web responsiva, acessível em qualquer navegador. 
+          Foram escolhidos por serem ferramentas padrão para interfaces web, executáveis em qualquer navegador. 
+          Esta abordagem permite ao utilizador controlar a transmissão de áudio de forma intuitiva e acessível.
+        </p>
+      </div>
+    </div>
+
+    <!-- Backend -->
+    <div class="row align-items-center mb-5 justify-content-center">
+      <div class="col-md-1 text-center">
+        <img src="imagens/tecnologias/backend.jpeg" alt="Backend" class="img-fluid" style="max-height: 80px;">
+      </div>
+      <div class="col-md-11 pl-md-4">
+        <p class="mb-0">
+          Python 3 e Flask utilizados para o desenvolvimento do servidor e lógica de controlo do sistema. 
+          Utilizámos <strong>Python</strong> pela sua simplicidade e vasto ecossistema de bibliotecas, e <strong>Flask</strong> 
+          como framework web leve e eficiente para desenvolver rapidamente a interface de controlo e os serviços de backend do sistema.
+        </p>
+      </div>
+    </div>
+
+    <!-- Áudio -->
+    <div class="row align-items-center mb-5 justify-content-center">
+      <div class="col-md-1 text-center">
+        <img src="imagens/tecnologias/som2.png" alt="Áudio" class="img-fluid" style="max-height: 80px;">
+      </div>
+      <div class="col-md-11 pl-md-4">
+        <p class="mb-0">
+          FFmpeg, Opus, FFplay e yt-dlp utilizados para codificação, descodificação e reprodução dos fluxos de áudio. 
+          No lado do recetor, o <strong>FFmpeg</strong> é utilizado para descodificar o fluxo RTP/Opus para áudio PCM bruto.
+        </p>
+      </div>
+    </div>
+
+    <!-- Rede -->
+    <div class="row align-items-center mb-5 justify-content-center">
+      <div class="col-md-1 text-center">
+        <img src="imagens/tecnologias/redes.jpeg" alt="Rede" class="img-fluid" style="max-height: 80px;">
+      </div>
+      <div class="col-md-11 pl-md-4">
+        <p class="mb-0">
+          UDP Broadcast e Multicast usados para comunicação eficiente com os recetores na rede.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="feature section-padding" id="rede">
+  <div class="container">
+    <h2 class="text-center">Distribuição de Áudio na Rede</h2>
+    <span class="line"></span>
+    <br>
+    <p>O sistema envia áudio via Wi-Fi através de UDP Broadcast e Multicast. Os recetores são detetados automaticamente, recebem configurações como canal e volume, e são atualizados dinamicamente. A arquitetura garante comunicação em tempo real com base numa matriz de configuração personalizada para cada recetor.</p>
+  </div>
+</section>
+
+
+
 
 
 <section class="arquitetura section-padding" id="arq">
@@ -382,6 +464,35 @@ function toggleNav() {
 <br>
 <br>
 
+
+<!-- Problemas Encontrados-->
+<section class="feature section-padding" id="problemas">
+  <div class="container">
+    <h2 class="text-center">Problemas Encontrados</h2>
+    <span class="line"></span>
+    <br>
+    <p><strong>Situação:</strong> Pacotes RTP chegavam com atraso aos recetores, comprometendo a sincronização.</p>
+    <p><strong>Impacto:</strong> Alta latência, áudio com falhas. Transmissão limitada a 1 Mbps (2.4GHz) ou 6 Mbps (5GHz).</p>
+    <p><strong>Solução:</strong> Configuração dos roteadores para usar apenas os modos 802.11n (2.4GHz) ou 802.11ac (5GHz), assegurando maior qualidade de transmissão.</p>
+  </div>
+</section>
+
+
+
+<!-- Visão Futura -->
+<section class="feature section-padding" id="futuro">
+  <div class="container">
+    <h2 class="text-center">Visão Futura</h2>
+    <span class="line"></span>
+    <br>
+    <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
+      <li>Suporte para mais serviços de streaming</li>
+      <li>Aplicação móvel para gestão remota</li>
+      <li>Processamento avançado de áudio</li>
+      <li>Integração com sistema de agendamento</li>
+    </ul>
+  </div>
+</section>
 
 
 <!-------Team Start------->
@@ -501,7 +612,6 @@ function toggleNav() {
     $('.w3-bar a[href^="#"], .w3-bar-block a[href^="#"]').on('click', function(event) {
       event.preventDefault();
       
-      // Anima a rolagem suave até o elemento alvo
       $('html, body').animate({
         scrollTop: $($.attr(this, 'href')).offset().top
       }, 800); // 800 é a duração da rolagem em milissegundos
