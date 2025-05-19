@@ -82,8 +82,6 @@
   .arquitetura {
     padding: 80px 40px; /* Increased padding on larger screens */
   }
-
-  
 }
 
 @media (min-width: 1024px) {
@@ -133,7 +131,7 @@
     margin-bottom: 30px;
 }
 
-/* Contêiner das imagens */
+/* Container das imagens */
 .arquitetura-img-container {
     text-align: center;
     margin-bottom: 0;
@@ -176,7 +174,6 @@
 
 
 /* Estilo para cada objetivo */
-/* Container para os objetivos */
 .container {
   display: flex;            /* Usando Flexbox para organizar os itens em linha */
   flex-wrap: wrap;          /* Permite quebrar os itens para a linha seguinte caso necessário */
@@ -184,6 +181,15 @@
   justify-content: center;  /* Alinha os itens no centro */
   padding: 20px;
 }
+
+
+
+/* Estilo para visão futura */
+.futuro-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
 
 
 /* General Section Styling */
@@ -243,13 +249,11 @@ function toggleNav() {
           <br>
           <h2>Contexto</h2>
           <span class="line"></span>
-          
           <p>A gestão eficiente de áudio é essencial em espaços como hotéis, centros comerciais, restaurantes e lojas onde diferentes zonas requerem anúncios personalizados ou uma simples música de ambiente.  Este projeto pretende responder a estas necessidades através de um sistema wireless composto por um nó central de controlo e múltiplos recetores distribuidos. Para isso,temos como objetivo aumentar a flexibilidade na gestão de áudio, permitindo uma experiência adaptada a cada zona e garantindo qualidade, simplicidade e eficiência na operação.</p>      
           <br>    
           <h2>Motivação</h2>
           <span class="line"></span>
-        
-          <p>A gestão de múltiplas zonas com diferentes necessidades sonoras, quando feita através de sistemas tradicionais baseados em cabos, é frequentemente complexa e pouco flexível. O uso de cabos exige infraestrutura física extensa, instalação trabalhosa e custos elevados de manutenção. Este projeto propõe uma solução wireless e flexível, eliminando a necessidade de cabeamento. Assim, é possível assegurar uma distribuição de áudio intuitiva e com maior facilidade para expansões ou reconfigurações.</p>
+          <p>A gestão de múltiplas zonas com diferentes necessidades sonoras, quando feita através de sistemas tradicionais baseados em cabos, é frequentemente complexa e pouco flexível. O uso de cabos exige infraestrutura física extensa, instalação trabalhosa e custos elevados de manutenção. Este projeto propõe uma solução wireless eliminando a necessidade de cabeamento. Assim, é possível assegurar uma distribuição de áudio intuitiva e com maior facilidade para expansões ou reconfigurações.</p>
           <br>
           <h2>Objetivos</h2>
           <span class="line"></span>
@@ -356,9 +360,7 @@ function toggleNav() {
       </div>
       <div class="col-md-11 pl-md-4">
         <p class="mb-0">
-          HTML, CSS e JavaScript utilizados na construção da interface web responsiva, acessível em qualquer navegador. 
-          Foram escolhidos por serem ferramentas padrão para interfaces web, executáveis em qualquer navegador. 
-          Esta abordagem permite ao utilizador controlar a transmissão de áudio de forma intuitiva e acessível.
+          <strong>HTML, CSS e JavaScript </strong> utilizados na construção da interface web. Foram escolhidos por serem ferramentas padrão para interfaces web, executáveis em qualquer navegador. Esta abordagem permite ao utilizador controlar a transmissão de áudio ajustando a música para as zonas desejadas. 
         </p>
       </div>
     </div>
@@ -370,8 +372,7 @@ function toggleNav() {
       </div>
       <div class="col-md-11 pl-md-4">
         <p class="mb-0">
-          Python 3 e Flask utilizados para o desenvolvimento do servidor e lógica de controlo do sistema. 
-          Utilizámos <strong>Python</strong> pela sua simplicidade e vasto ecossistema de bibliotecas, e <strong>Flask</strong> 
+          <strong>Python 3 e Flask </strong> utilizados para o desenvolvimento do servidor e lógica de controlo do sistema. <strong>Python 3</strong> escolhido pela sua simplicidade e vasto ecossistema de bibliotecas, e <strong>Flask</strong> 
           como framework web leve e eficiente para desenvolver rapidamente a interface de controlo e os serviços de backend do sistema.
         </p>
       </div>
@@ -384,8 +385,7 @@ function toggleNav() {
       </div>
       <div class="col-md-11 pl-md-4">
         <p class="mb-0">
-          FFmpeg, Opus, FFplay e yt-dlp utilizados para codificação, descodificação e reprodução dos fluxos de áudio. 
-          No lado do recetor, o <strong>FFmpeg</strong> é utilizado para descodificar o fluxo RTP/Opus para áudio PCM bruto.
+          Utilizamos o <strong>Yt-dlp</strong> para extrair o áudio de fontes online (como o YouTube), enquanto o <strong>Opus</strong> é um codec open source que escolhemos para ser responsável pela compressão eficiente do áudio antes da transmissão. No lado do recetor, o <strong>FFplay</strong> é usado para descodificar e reproduzir diretamente os fluxos <strong>RTP/Opus</strong>.
         </p>
       </div>
     </div>
@@ -397,7 +397,7 @@ function toggleNav() {
       </div>
       <div class="col-md-11 pl-md-4">
         <p class="mb-0">
-          UDP Broadcast e Multicast usados para comunicação eficiente com os recetores na rede.
+          <strong>UDP Broadcast</strong> é utilizado inicialmente para anunciar a presença do servidor e permitir que os recetores (colunas) se conectem automaticamente. Após o emparelhamento, a transmissão de áudio é feita através de <strong>UDP Multicast</strong>, garantindo uma distribuição eficiente do fluxo de áudio apenas para os recetores conectados.
         </p>
       </div>
     </div>
@@ -459,7 +459,6 @@ function toggleNav() {
   <span class="close">&times;</span>
   <img class="modal-content" id="modalImage">
 </div>
-
 <br>
 <br>
 <br>
@@ -468,12 +467,30 @@ function toggleNav() {
 <!-- Problemas Encontrados-->
 <section class="feature section-padding" id="problemas">
   <div class="container">
-    <h2 class="text-center">Problemas Encontrados</h2>
-    <span class="line"></span>
-    <br>
-    <p><strong>Situação:</strong> Pacotes RTP chegavam com atraso aos recetores, comprometendo a sincronização.</p>
-    <p><strong>Impacto:</strong> Alta latência, áudio com falhas. Transmissão limitada a 1 Mbps (2.4GHz) ou 6 Mbps (5GHz).</p>
-    <p><strong>Solução:</strong> Configuração dos roteadores para usar apenas os modos 802.11n (2.4GHz) ou 802.11ac (5GHz), assegurando maior qualidade de transmissão.</p>
+    <h2 class="mb-4" style="padding-left: 16rem;">Problemas Encontrados</h2>
+
+    <span class="line mb-4 d-block mx-auto"></span>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="p-4 bg-white shadow rounded-3">
+          <div class="mb-3">
+            <i class="fas fa-exclamation-triangle fa-lg text-danger me-2"></i>
+            <strong>Situação:</strong>
+            <span>Pacotes RTP chegavam com atraso aos recetores, comprometendo a sincronização.</span>
+          </div>
+          <div class="mb-3">
+            <i class="fas fa-bolt fa-lg text-warning me-2"></i>
+            <strong>Impacto:</strong>
+            <span>Alta latência, áudio com falhas. Transmissão limitada a 1 Mbps (2.4GHz) ou 6 Mbps (5GHz).</span>
+          </div>
+          <div>
+            <i class="fas fa-wrench fa-lg text-success me-2"></i>
+            <strong>Solução:</strong>
+            <span>Configuração dos roteadores para usar apenas os modos 802.11n (2.4GHz) ou 802.11ac (5GHz), assegurando maior qualidade de transmissão.</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -481,16 +498,43 @@ function toggleNav() {
 
 <!-- Visão Futura -->
 <section class="feature section-padding" id="futuro">
-  <div class="container">
-    <h2 class="text-center">Visão Futura</h2>
-    <span class="line"></span>
-    <br>
-    <ul style="text-align: left; max-width: 800px; margin: 0 auto;">
-      <li>Suporte para mais serviços de streaming</li>
-      <li>Aplicação móvel para gestão remota</li>
-      <li>Processamento avançado de áudio</li>
-      <li>Integração com sistema de agendamento</li>
-    </ul>
+  <div class="container text-center">
+    <h2 class="mb-4">Visão Futura</h2>
+    <span class="line mb-5"></span>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5 mb-4">
+        <div class="p-4 shadow rounded-3 h-100 bg-white">
+          <i class="fas fa-stream fa-2x mb-3 text-primary"></i>
+          <h5 class="futuro-title">Suporte a Mais Serviços de Streaming</h5>
+          <p class="mb-0">Expansão da compatibilidade com múltiplas plataformas de áudio online.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-5 mb-4">
+        <div class="p-4 shadow rounded-3 h-100 bg-white">
+          <i class="fas fa-mobile-alt fa-2x mb-3 text-primary"></i>
+          <h5 class="futuro-title">Aplicação Móvel</h5>
+          <p class="mb-0">Gestão remota do sistema através de uma app dedicada.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-5 mb-4">
+        <div class="p-4 shadow rounded-3 h-100 bg-white">
+            <i class="fas fa-music fa-2x mb-3 text-primary"></i>
+          <h5 class="futuro-title">Processamento Avançado de Áudio</h5>
+          <p class="mb-0">Melhorias na qualidade do som e na adaptação ao ambiente.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-5 mb-4">
+        <div class="p-4 shadow rounded-3 h-100 bg-white">
+          <i class="fas fa-calendar-alt fa-2x mb-3 text-primary"></i>
+          <h5 class="futuro-title">Integração com Sistema de Agendamento</h5>
+          <p class="mb-0">Permite definir horários automáticos para início e fim das transmissões.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
