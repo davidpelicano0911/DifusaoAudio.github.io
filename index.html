@@ -209,18 +209,19 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #2c3e50;
+  background-color: #f4f4f4;
   overflow-x: hidden;
   transition: width 0.3s ease;
   z-index: 9999;
   padding-top: 60px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1); /* sombra para destacar suavemente */
 }
 
 #sidebar a {
   display: flex;
   align-items: center;
   padding: 15px;
-  color: white;
+  color: #333; /* texto escuro */
   text-decoration: none;
   font-size: 18px;
 }
@@ -237,8 +238,9 @@
 }
 
 #sidebar a:hover {
-  background-color: #1f2d3a; /* tom mais escuro do azul da sidebar */
+  background-color: #ddd; /* tom mais escuro do azul da sidebar */
   transition: background-color 0.2s ease;
+  color: #000; /* texto escuro */
 }
 
 
@@ -248,7 +250,7 @@
 }
 
 .sidebar-toggle-icon {
-  color: white;
+  color: #333; /* texto escuro */
   font-size: 24px;
   text-align: center;
   margin: -40px;
@@ -275,15 +277,27 @@
 }
 
 .w3-bar-links {
-  margin-left: 710px; /* empurra os links para a direita */
+  margin-left: 750px; /* empurra os links para a direita */
   display: flex;
-  gap: 20px; /* espaço entre os links */
+  gap: 12px; /* espaço entre os links */
 }
 
 #sidebar a:first-of-type {
   margin-top: 35px; /* ajusta o valor conforme o espaçamento que desejares */
 }
 
+
+.col-md-6 p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.img-fluid {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
 
   </style>
@@ -304,6 +318,7 @@
     <a href="#rede"><span>Distribuição na Rede</span></a>
     <a href="#arq"><span>Arquitetura</span></a>
     <a href="#funcionalidades"><span>Funcionalidades</span></a>
+    <a href="#testes"><span>Testes Realizados</span></a>
     <a href="#problemas"><span>Problemas Encontrados</span></a>
     <a href="#futuro"><span>Visão Futura</span></a>
     <a href="#equipa"><span>Equipa</span></a>
@@ -313,12 +328,12 @@
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#home" class="w3-bar-item w3-button"><b>Difusão</b> Áudio Wireless</a>
+    <a href="#home" class="w3-bar-item w3-button"><b>Difusão</b> Áudio</a>
       <div class="w3-bar-links">
       <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
       <a href="#tech" class="w3-bar-item w3-button">Tecnologias</a>
       <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
-      <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
+      <a href="#funcionalidades" class="w3-bar-item w3-button">Funcionalidades</a>
       <a href="javascript:void(0);" class="w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="toggleNav()" aria-label="Menu">☰</a>    
     </div>
   </div>
@@ -330,7 +345,7 @@
   <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
   <a href="#re" class="w3-bar-item w3-button">Resultados Esperados</a>
   <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
-  <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
+  <a href="#funcionalidades" class="w3-bar-item w3-button functional">Funcionalidades</a>
 </div>
 
 <script>
@@ -572,12 +587,11 @@ function toggleNav() {
 <br>
 
 
+<!--Principais Funcionalidades-->
 <section class="section-padding" id="funcionalidades">
   <div class="container">
-    <h2 class="text-center mb-4">Funcionalidades Principais</h2>
+    <h2 class="text-center mb-4" style="padding-left: 16rem;">Principais Funcionalidades</h2>
     <span class="line mb-5 d-block mx-auto"></span>
-
-    <!-- Bloco 1 -->
     <div class="row justify-content-center mb-4">
       <div class="col-md-10">
         <div class="p-4 bg-light rounded shadow-sm d-flex align-items-start">
@@ -592,7 +606,6 @@ function toggleNav() {
       </div>
     </div>
 
-    <!-- Bloco 2 -->
     <div class="row justify-content-center mb-4">
       <div class="col-md-10">
         <div class="p-4 bg-white rounded shadow-sm d-flex align-items-start">
@@ -607,7 +620,6 @@ function toggleNav() {
       </div>
     </div>
 
-    <!-- Bloco 3 -->
     <div class="row justify-content-center mb-4">
       <div class="col-md-10">
         <div class="p-4 bg-light rounded shadow-sm d-flex align-items-start">
@@ -623,7 +635,6 @@ function toggleNav() {
       </div>
     </div>
 
-    <!-- Bloco 4 -->
     <div class="row justify-content-center mb-4">
       <div class="col-md-10">
         <div class="p-4 bg-white rounded shadow-sm d-flex align-items-start">
@@ -642,11 +653,37 @@ function toggleNav() {
 </section>
 
 
+
+<!-- Secção de Testes -->
+<section class="feature section-padding" id="testes">
+  <div class="container">
+    <h2 class="mb-4">Testes Realizados</h2>
+    <span class="line mb-5"></span>
+
+    <div class="row justify-content-center">
+      <div class="col-md-10 text-center">
+        <img src="imagens/testes/testes.png" alt="Imagem de Teste"
+             class="img-fluid rounded shadow-sm mb-4"
+             style="max-height: 600px; width: 100%; object-fit: contain;">
+        <p style="font-size: 18px; text-align: justify;">
+          Para validar o desempenho do sistema de difusão de áudio, foram realizados testes com diferentes durações de frames e respetivos tamanhos de pacote. O gráfico acima mostra a percentagem de perda de pacotes (%) em função do número de canais utilizados (c), para cada configuração de frame. 
+          <br><br>
+          Observa-se que, com frames mais curtos (por exemplo, 10 ms), o número de pacotes por segundo é elevado, o que aumenta drasticamente a probabilidade de perda quando o número de canais cresce. Em contrapartida, frames mais longos (como 100 ms ou 120 ms) reduzem a carga de transmissão, resultando em menor perda de pacotes mesmo com mais canais ativos.
+          <br><br>
+          Estes testes permitiram concluir que existe um compromisso entre latência e fiabilidade: embora frames curtos garantam menor latência, tornam o sistema mais suscetível a perdas em cenários com muitos recetores. Com base nestes dados, foi possível definir configurações ideais de frame e canais para manter o equilíbrio entre qualidade de áudio e escalabilidade.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
 <!-- Problemas Encontrados-->
 <section class="feature section-padding" id="problemas">
   <div class="container">
     <h2 class="mb-4" style="padding-left: 16rem;">Problemas Encontrados</h2>
-
     <span class="line mb-4 d-block mx-auto"></span>
     <div class="row justify-content-center">
       <div class="col-md-10">
@@ -682,7 +719,7 @@ function toggleNav() {
 
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-5 mb-4">
-        <div class="p-4 shadow rounded-3 h-100 bg-white">
+        <div class="p-4 shadow rounded-3 bg-white">
           <i class="fas fa-stream fa-2x mb-3 text-primary"></i>
           <h5 class="futuro-title">Suporte a Mais Serviços de Streaming</h5>
           <p class="mb-0">Expansão da compatibilidade com múltiplas plataformas de áudio online.</p>
@@ -690,7 +727,7 @@ function toggleNav() {
       </div>
 
       <div class="col-md-6 col-lg-5 mb-4">
-        <div class="p-4 shadow rounded-3 h-100 bg-white">
+        <div class="p-4 shadow rounded-3 bg-white">
           <i class="fas fa-mobile-alt fa-2x mb-3 text-primary"></i>
           <h5 class="futuro-title">Aplicação Móvel</h5>
           <p class="mb-0">Gestão remota do sistema através de uma app dedicada.</p>
@@ -698,7 +735,7 @@ function toggleNav() {
       </div>
 
       <div class="col-md-6 col-lg-5 mb-4">
-        <div class="p-4 shadow rounded-3 h-100 bg-white">
+        <div class="p-4 shadow rounded-3 bg-white">
             <i class="fas fa-music fa-2x mb-3 text-primary"></i>
           <h5 class="futuro-title">Processamento Avançado de Áudio</h5>
           <p class="mb-0">Melhorias na qualidade do som e na adaptação ao ambiente.</p>
@@ -706,10 +743,10 @@ function toggleNav() {
       </div>
 
       <div class="col-md-6 col-lg-5 mb-4">
-        <div class="p-4 shadow rounded-3 h-100 bg-white">
+        <div class="p-4 shadow rounded-3 bg-white">
           <i class="fas fa-calendar-alt fa-2x mb-3 text-primary"></i>
           <h5 class="futuro-title">Integração com Sistema de Agendamento</h5>
-          <p class="mb-0">Permite definir horários automáticos para início e fim das transmissões.</p>
+          <p class="mb-0">Definir horários automáticos para início das transmissões</p>
         </div>
       </div>
     </div>
