@@ -63,6 +63,7 @@
     body{
       font-family: "Montserrat", sans-serif;
       font-size: 22px;
+      margin-left: 60px;
     }
     
     
@@ -108,6 +109,7 @@
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
+
 
 
 
@@ -191,28 +193,134 @@
 }
 
 
-
 /* General Section Styling */
 .feature {
   padding: 100px ; /* Adds more space around the section */
   background-color: #ffff; /* Light gray background for subtle contrast */
   text-align: center; /* Centers content in the section */
 }
+
+
+
+
+#sidebar {
+  height: 100vh;
+  width: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #2c3e50;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  z-index: 9999;
+  padding-top: 60px;
+}
+
+#sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+#sidebar a span {
+  opacity: 0;
+  visibility: hidden;
+  margin-left: 10px;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+#sidebar:hover {
+  width: 250px;
+}
+
+#sidebar a:hover {
+  background-color: #1f2d3a; /* tom mais escuro do azul da sidebar */
+  transition: background-color 0.2s ease;
+}
+
+
+#sidebar:hover a span {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar-toggle-icon {
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  margin: -40px;
+  padding: 5px 0;
+
+}
+
+/* NAVBAR: desloca tudo para a direita para não tapar */
+.w3-top .w3-bar {
+  margin-left: -10px;
+  }
+
+.w3-bar .w3-bar-item:first-child {
+  margin-left: 0;
+}
+
+.w3-bar .w3-right {
+  margin-left: auto; /* ou um valor fixo menor */
+}
+
+.w3-bar {
+  display: flex;
+  align-items: center;
+}
+
+.w3-bar-links {
+  margin-left: 710px; /* empurra os links para a direita */
+  display: flex;
+  gap: 20px; /* espaço entre os links */
+}
+
+#sidebar a:first-of-type {
+  margin-top: 35px; /* ajusta o valor conforme o espaçamento que desejares */
+}
+
+
+
   </style>
 </head>
 <body>
+
+
+
+  <!-- Sidebar Oculta -->
+  <div id="sidebar">
+    <div class="sidebar-toggle-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+    <a href="#home"><span>Início</span></a>
+    <a href="#projeto"><span>Projeto</span></a>
+    <a href="#re"><span>Resultados Esperados</span></a>
+    <a href="#tech"><span>Tecnologias</span></a>
+    <a href="#rede"><span>Distribuição na Rede</span></a>
+    <a href="#arq"><span>Arquitetura</span></a>
+    <a href="#funcionalidades"><span>Funcionalidades</span></a>
+    <a href="#problemas"><span>Problemas Encontrados</span></a>
+    <a href="#futuro"><span>Visão Futura</span></a>
+    <a href="#equipa"><span>Equipa</span></a>
+  </div>
+  
 
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
     <a href="#home" class="w3-bar-item w3-button"><b>Difusão</b> Áudio Wireless</a>
-    <div class="w3-right">
+      <div class="w3-bar-links">
       <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
-      <a href="#re" class="w3-bar-item w3-button">Resultados Esperados</a>
       <a href="#tech" class="w3-bar-item w3-button">Tecnologias</a>
       <a href="#arq" class="w3-bar-item w3-button">Arquitetura</a>
       <a href="#equipa" class="w3-bar-item w3-button">Equipa</a>
-      <a href="javascript:void(0);" class="w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="toggleNav()" aria-label="Menu">☰</a>    </div>
+      <a href="javascript:void(0);" class="w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="toggleNav()" aria-label="Menu">☰</a>    
+    </div>
   </div>
 </div>
 
@@ -462,6 +570,76 @@ function toggleNav() {
 <br>
 <br>
 <br>
+
+
+<section class="section-padding" id="funcionalidades">
+  <div class="container">
+    <h2 class="text-center mb-4">Funcionalidades Principais</h2>
+    <span class="line mb-5 d-block mx-auto"></span>
+
+    <!-- Bloco 1 -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-10">
+        <div class="p-4 bg-light rounded shadow-sm d-flex align-items-start">
+          <div style="width: 100px;" class="text-center">
+            <i class="fas fa-globe fa-2x text-primary"></i>
+          </div>
+          <div class="ms-3">
+            <h5 class="futuro-title">Interface Web</h5>
+            <p class="mb-0">Permite controlo centralizado e acessível do sistema através de qualquer dispositivo com acesso á rede</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloco 2 -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-10">
+        <div class="p-4 bg-white rounded shadow-sm d-flex align-items-start">
+          <div style="width: 160px;" class="text-center">
+            <i class="fas fa-music fa-2x text-primary"></i>
+          </div>
+          <div class="ms-3">
+            <h5 class="futuro-title">Gestão de Áudio e Playlists</h5>
+            <p class="mb-0">Permite criar e gerir sequências de músicas que são reproduzidas automaticamente em canais específicos, facilitando a programação de ambientes sonoros personalizados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloco 3 -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-10">
+        <div class="p-4 bg-light rounded shadow-sm d-flex align-items-start">
+          <div style="width: 120px;" class="text-center">
+            <i class="fas fa-headphones-alt fa-2x text-primary"></i>
+
+          </div>
+          <div class="ms-3">
+            <h5 class="futuro-title">Gestão de Dispositivos e Zonas</h5>
+            <p class="mb-0">Distribuição flexível de áudio por zonas, com configuração individual de recetores, volumes e conteúdos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloco 4 -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-10">
+        <div class="p-4 bg-white rounded shadow-sm d-flex align-items-start">
+          <div style="width: 120px;" class="text-center">
+            <i class="fas fa-bell fa-2x text-primary"></i>
+          </div>
+          <div class="ms-3">
+            <h5 class="futuro-title">Interrupções</h5>
+            <p class="mb-0">Capacidade de interromper a reprodução para fazer anúncios em tempo real ou mensagens de emergência através do microfone</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
 <!-- Problemas Encontrados-->
