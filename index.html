@@ -332,7 +332,10 @@
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#home" class="w3-bar-item w3-button"><b>Difusão</b> Áudio</a>
+    <a href="#home" class="w3-bar-item w3-button" style="display: flex; align-items: center; gap: 10px;">
+      <img src="imagens/logo/logo.png" alt="Logo" style="height: 40px;">
+      <span><b>Difusão</b> Áudio</span>
+    </a>    
       <div class="w3-bar-links">
       <a href="#projeto" class="w3-bar-item w3-button">Projeto</a>
       <a href="#tech" class="w3-bar-item w3-button">Tecnologias</a>
@@ -653,6 +656,20 @@ function toggleNav() {
       </div>
     </div>
 
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-10">
+        <div class="p-4 bg-white rounded shadow-sm d-flex align-items-start">
+          <div style="width: 120px;" class="text-center">
+            <i class="fas fa-file-export fa-2x text-primary"></i>
+          </div>
+          <div class="ms-3">
+            <h5 class="futuro-title">Importar e Exportar Configurações</h5>
+            <p class="mb-0">Permite guardar canais e playlists previamente configurados, para que possam ser reutilizados facilmente sem necessidade de reconfiguração manual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -670,11 +687,13 @@ function toggleNav() {
              class="img-fluid rounded shadow-sm mb-4"
              style="max-height: 600px; width: 100%; object-fit: contain;">
         <p style="font-size: 18px; text-align: justify;">
-          Para validar o desempenho do sistema de difusão de áudio, foram realizados testes com diferentes durações de frames e respetivos tamanhos de pacote. O gráfico acima mostra a percentagem de perda de pacotes (%) em função do número de canais utilizados (c), para cada configuração de frame. 
+          Para validar o desempenho do sistema de difusão de áudio, foram realizados testes com diferentes valores de frame duration. O gráfico acima apresenta a percentagem de perda de pacotes (%) em função do número de canais utilizados (c), para cada configuração de frame duration.
           <br><br>
-          Observa-se que, com frames mais curtos (por exemplo, 10 ms), o número de pacotes por segundo é elevado, o que aumenta drasticamente a probabilidade de perda quando o número de canais cresce. Em contrapartida, frames mais longos (como 100 ms ou 120 ms) reduzem a carga de transmissão, resultando em menor perda de pacotes mesmo com mais canais ativos.
+          A frame duration influencia indiretamente o tamanho dos pacotes ao definir o intervalo de tempo entre os envios. Frames mais curtos resultam em um maior número de pacotes por segundo, aumentando o tráfego na rede. Esse aumento de tráfego eleva significativamente a probabilidade de perda de pacotes à medida que o número de canais cresce.
+Por outro lado, frames mais longos (como 100 ms ou 120 ms) reduzem a frequência de envio, diminuindo a carga na rede. Isso resulta numa menor perda de pacotes mesmo com mais canais ativos. No entanto, observou-se que essas configurações ainda apresentaram perdas superiores à configuração com 80 ms. Isso ocorre devido ao limite de MTU (Unidade Máxima de Transmissão), que restringe o tamanho dos pacotes a 1500 bytes. Quando esse limite é ultrapassado, os pacotes são fragmentados, o que aumenta o tráfego e, consequentemente, a probabilidade de perda.
           <br><br>
-          Estes testes permitiram concluir que existe um compromisso entre latência e fiabilidade: embora frames curtos garantam menor latência, tornam o sistema mais suscetível a perdas em cenários com muitos recetores. Com base nestes dados, foi possível definir configurações ideais de frame e canais para manter o equilíbrio entre qualidade de áudio e escalabilidade.
+          Esses resultados evidenciam um compromisso inerente entre latência e confiabilidade: frame durations curtas reduzem a latência do sistema, mas aumentam a vulnerabilidade a perdas em ambientes com muitos canais; já frames mais longos favorecem a estabilidade da transmissão, mas com maior risco de fragmentação e latência.
+Com base nessa análise, foi possível determinar configurações ideais de frame duration e número de canais, de forma a otimizar a qualidade do áudio transmitido e a escalabilidade do sistema de difusão.
         </p>
       </div>
     </div>
