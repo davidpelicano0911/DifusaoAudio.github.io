@@ -303,6 +303,19 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+
+
+.laranja-claro {
+  background-color: #ffcc80;
+  color: #000;
+}
+
+
 
   </style>
 </head>
@@ -318,6 +331,12 @@
     <a href="#home"><span>Início</span></a>
     <a href="#projeto"><span>Projeto</span></a>
     <a href="#re"><span>Resultados Esperados</span></a>
+    <a href="#relacionados"><span>Trabalhos Relacionados</span></a>
+    <a href="#solucoes"><span>Soluções Comerciais</span></a>
+    <a href="#cenario"><span>Cenário e Persona</span></a>
+    <a href="#usecases"><span>Casos de Uso</span></a>
+    <a href="#requisitosf"><span>Requisitos Funcionais</span></a>
+    <a href="#requisitosnf"><span>Requisitos Não Funcionais</span></a>
     <a href="#tech"><span>Tecnologias</span></a>
     <a href="#rede"><span>Distribuição na Rede</span></a>
     <a href="#arq"><span>Arquitetura</span></a>
@@ -487,6 +506,271 @@ function toggleNav() {
 </section>
 
 <br>
+
+
+
+<!-- Trabalhos Relacionados -->
+<section class="feature section-padding" id="relacionados">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-left: 16rem;">Trabalhos Relacionados</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped text-center align-middle">
+        <thead class="thead-dark">
+          <tr>
+            <th></th>
+            <th>Complexidade</th>
+            <th>Custo</th>
+            <th>Alcançe</th>
+            <th>Flexibilidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ligação Cabo</td>
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+          </tr>
+          <tr>
+            <td>DAB</td>
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-check text-success"></i></td>  
+          </tr>
+          <tr>
+            <td>Bluetooth</td>
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-check text-success"></i></td>  
+          </tr>
+          <tr>
+            <td>5G</td>
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-times text-danger"></i></td> <!-- Cruz vermelha -->
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-check text-success"></i></td>  
+          </tr>
+          <tr>
+            <td>Objetivo</td>
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-check text-success"></i></td>  
+            <td><i class="fas fa-check text-success"></i></td>  
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Soluções Comerciais -->
+<section class="feature section-padding" id="solucoes">
+  <div class="container text-center">
+    <h2 class="text-center mb-4" style="padding-left: 20rem;">Soluções Comerciais</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+
+    <div class="row text-center">
+      <div class="col-md-4 mb-5">
+        <img src="imagens/logo/sonos.png" alt="Sonos" style="max-height: 80px;">
+        <p>Sistemas de áudio domésticos. Streaming de música sem fio via Wi-Fi</p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img src="imagens/logo/bosh.png" alt="Bosch" style="max-height: 80px;">
+        <p>Sistemas baseados em cablagem. Utilizam redes IP </p>
+      </div>
+      <div class="col-md-4 mb-5">
+        <img src="imagens/logo/sennheizer.png" alt="Sennheiser" style="max-height: 80px;">
+        <p>Soluções baseadas em rádio. Utilizado em ambientes complexos, eventos ao vivo e produções teatrais</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Cenário e Persona -->
+<section class="feature section-padding" id="cenario">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-left: 23rem;">Cenário e Persona</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+    
+    <div class="row align-items-center">
+      <!-- Imagem da Persona -->
+      <div class="col-md-5 text-center mb-4 mb-md-0">
+        <img src="imagens/autores/clara2.jpg" alt="Clara Silva - Rececionista" class="img-fluid rounded shadow" style="width: 100%; max-width: 400px; height: auto;">
+      </div>
+      
+      <!-- Texto da Persona -->
+      <div class="col-md-7">
+        <h4><strong>Clara Silva</strong> – Rececionista do Hotel Aurora</h4>
+        <p style="font-size: 18px; text-align: justify; margin-top: 10px;">
+          Como rececionista do hotel, a Clara é responsável por criar uma experiência acolhedora e personalizada para os hóspedes. 
+          Para isso, precisa configurar o sistema de áudio para as diversas zonas do hotel, garantindo que cada ambiente — receção, restaurante, spa e corredores — tenha a música adequada ao momento do dia e ao perfil dos visitantes. <br><br>
+          Além disso, a Clara pode utilizar o microfone para <strong>interromper temporariamente a reprodução de música</strong> e fazer anúncios importantes ou mensagens de emergência para todo o hotel ou em zonas específicas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Casos de Uso -->
+<section class="feature section-padding" id="usecases">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-left: 25rem;">Casos de Uso</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped text-center align-middle">
+        <thead class="thead-dark">
+          <tr>
+            <th>Canal</th>
+            <th>Tipo de Áudio</th>
+            <th>Áreas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Canal 1</td>
+            <td>Arquivo Local</td>
+            <td>Restauração e Corredores</td>
+          </tr>
+          <tr>
+            <td>Canal 2</td>
+            <td>Streaming</td>
+            <td>Ar Livre e Piscina</td>
+          </tr>
+          <tr>
+            <td>Canal 3</td>
+            <td>Música YouTube</td>
+            <td>Receção</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Requisitos Funcionais -->
+<section class="feature section-padding" id="requisitosf">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-left: 20rem;">Requisitos Funcionais</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="table-responsive">
+          <table class="table text-left align-middle">
+            <tbody>
+              <tr>
+                <td class="bg-info text-white font-weight-bold" style="width: 40%; padding: 20px; border-radius: 12px 0 0 12px;">
+                  Gestão Central de Áudio
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Distribui sinais de áudio para unidades recetoras em diferentes zonas
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-info text-white font-weight-bold" style="padding: 20px; border-radius: 12px 0 0 12px;">
+                  Controlo Remoto via Website
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Interface remota para iniciar e parar áudio e ajustes de volume por zona
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-info text-white font-weight-bold" style="padding: 20px; border-radius: 12px 0 0 12px;">
+                  Receção e Reprodução de Áudio
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Receber e reproduzir áudio nas unidades reprodutoras conectadas
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-info text-white font-weight-bold" style="padding: 20px; border-radius: 12px 0 0 12px;">
+                  Configuração de Múltiplas Zonas
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Áudio específico por zona
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Requisitos Não Funcionais -->
+<section class="feature section-padding" id="requisitosnf">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-left: 18rem;">Requisitos Não Funcionais</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="table-responsive">
+          <table class="table text-left align-middle">
+            <tbody>
+              <tr>
+                <td class="laranja-claro font-weight-bold" style="width: 40%; padding: 20px; border-radius: 12px 0 0 12px;"> Desempenho</td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Baixa latência e boa qualidade de áudio.
+                </td>
+              </tr>
+              <tr>
+                <td class="laranja-claro font-weight-bold" style="padding: 20px; border-radius: 12px 0 0 12px;">
+                  Fiabilidade
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Estabilidade na difusão sem fios e resistência a falhas.
+                </td>
+              </tr>
+              <tr>
+                <td class="laranja-claro font-weight-bold" style="padding: 20px; border-radius: 12px 0 0 12px;">
+                  Usuabilidade
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Interface intuitiva para utilizadores não técnicos
+                </td>
+              </tr>
+              <tr>
+                <td class="laranja-claro font-weight-bold" style="padding: 20px; border-radius: 12px 0 0 12px;">
+                  Escalabilidade
+                </td>
+                <td class="bg-light" style="padding: 20px; border-radius: 0 12px 12px 0;"> Suporte à adição de unidades recetoras e expansão de zonas de áudio.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
 
 <section class="feature section-padding" id="tech">
   <div class="container">
