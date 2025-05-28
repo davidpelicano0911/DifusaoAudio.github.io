@@ -6,6 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
@@ -291,6 +292,8 @@
 }
 
 
+
+
 .col-md-6 p {
   display: flex;
   flex-direction: column;
@@ -308,6 +311,111 @@ table {
   border-spacing: 0;
 }
 
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 350px;
+  max-height: 450px;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+    max-height: 400px;
+  }
+}
+
+
+#comparativo .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#comparativo h2 {
+  text-align: center;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100%;
+}
+#comparativo .bg-white {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+#comparativo .table-container {
+  max-width: 1400px; /* aumenta a largura máxima */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comparativo table {
+  font-size: 0.93rem;
+  min-width: 1200px; /* aumenta a largura mínima */
+}
+
+#comparativo table thead.thead-dark th {
+  background-color: #414447 !important; /* cinza escuro */
+  color: #fff !important;               /* letras brancas */
+  font-weight: bold;
+  border-bottom: 2px solid #bfc4ca !important; /* linhas cinza */
+  border-top: 1px solid #bfc4ca !important;
+  border-right: 1px solid #bfc4ca !important;
+  border-left: 1px solid #bfc4ca !important;
+}
+#comparativo table, 
+#comparativo th, 
+#comparativo td {
+  border-color: #bfc4ca !important;
+}
+
+#comparativo .chart-container {
+  margin-bottom: 48px; /* aumenta o espaçamento abaixo do gráfico */
+}
+
+
+
+/* Para alterar as caixas no fluxo de funcionamento */
+#fluxo .bg-info {
+  background-color: #ffffff !important; /* Fundo branco */
+  color: #000000 !important; /* Texto preto */
+  border: 4px solid #456dda !important; /* Contorno azul escuro */
+  border-radius: 15px !important; /* Bordas arredondadas */
+  padding-top: 8px !important; /* Reduz o espaço acima */
+  padding-bottom: 8px !important; /* Reduz o espaço abaixo */
+}
+
+/* Estilo para os títulos dentro das caixas */
+#fluxo .bg-info strong.h5 {
+  color: #456dda !important;
+  font-size: 24px !important; /* Tamanho reduzido */
+  font-weight: 700 !important;
+  margin-bottom: 0px !important; /* Remove o espaço abaixo do título */
+  line-height: 1.2 !important; /* Reduz o espaço entre linhas */
+}
+
+/* Estilo para o texto pequeno dentro das caixas */
+#fluxo .bg-info .small {
+  color: #000000 !important;
+  font-size: 18px !important; /* Tamanho reduzido */
+  padding-top: 0px !important;
+  padding-bottom: 0px !important; /* Remove o padding inferior */
+  margin-top: -2px !important; /* Aproxima mais ao título */
+  line-height: 1.3 !important; /* Reduz o espaço entre linhas */
+}
+
+
+
+
+
+/* Para alterar a cor das setas */
+#fluxo .fas.fa-chevron-down {
+  color: #456dda !important; /* Mesma cor do contorno */
+  font-size: 26px !important; /* Setas maiores */
+}
+
 
 
 .laranja-claro {
@@ -315,6 +423,21 @@ table {
   color: #000;
 }
 
+
+.feature .flip-card-front, .feature .flip-card-back {
+  padding: 20px; /* Mantém o padding original */
+  border-radius: 10px; /* Mantém as bordas arredondadas */
+}
+
+.feature .flip-card-front {
+  background-color: rgba(146, 211, 255, 0.6); /* Versão mais transparente do azul claro */
+  color: #070606; /* Mantém a cor do texto */
+}
+
+.feature .flip-card-back {
+  background-color: rgba(255, 255, 255, 0.7); /* Versão mais transparente do branco */
+  color: #333; /* Mantém a cor do texto */
+}
 
 
   </style>
@@ -568,7 +691,73 @@ function toggleNav() {
   </div>
 </section>
 
+<!-- Comparativo de Mercado -->
+<section class="feature section-padding" id="comparativo">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-right: 16rem;">Comparativo de Mercado</h2>
+    <span class="line mb-4 d-block mx-auto"></span>
+    <p class="mb-4 bg-white p-4 rounded shadow">Para contextualizar o projeto, é útil comparar as tecnologias de difusão de áudio existentes e os protocolos de transmissão. As tabelas e gráficos abaixo resumem as principais características, vantagens e desvantagens.</p>
+    
+    <div class="bg-white p-4 rounded shadow mb-5">
+      <h3 class="font-weight-bold text-primary mb-3">Comparativo de Tecnologias de Difusão de Áudio</h3>
+      <p class="small mb-3">Este gráfico compara tecnologias selecionadas em termos de latência típica e custo estimado. Pode interagir com os controlos para filtrar os dados.</p>
+      <div class="mb-4 d-flex flex-wrap align-items-center">
+        <label for="tech-filter-latency" class="mr-2">Latência Máx.:</label>
+        <input type="range" id="tech-filter-latency" min="0" max="100" value="100" style="width: 150px; margin-right: 10px;">
+        <span id="tech-filter-latency-value" class="mr-3">100 ms</span>
+        <label for="tech-filter-cost" class="mr-2">Custo Máx.:</label>
+        <select id="tech-filter-cost" class="form-control-sm" style="width: auto;">
+          <option value="3">Todos</option>
+          <option value="1">Baixo</option>
+          <option value="2">Médio</option>
+          <option value="3">Elevado</option>
+        </select>
+      </div>
+      <div class="chart-container">
+        <canvas id="techComparisonChart"></canvas>
+      </div>
+      <div class="table-container mt-6 overflow-x-auto">
+        <table id="techTable1" class="table table-bordered table-striped text-center align-middle">
+          <thead class="thead-dark">
+            <tr>
+              <th>Tecnologia/Sistema</th>
+              <th>Latência Típica</th>
+              <th>Qualidade</th>
+              <th>Escalabilidade</th>
+              <th>Flexibilidade Inst.</th>
+              <th>Custo</th>
+              <th>Casos de Uso</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
 
+    <div class="bg-white p-4 rounded shadow">
+      <h3 class="font-weight-bold text-primary mb-3">Comparativo de Protocolos de Transmissão de Áudio</h3>
+      <p class="small mb-3">Este gráfico radar compara diferentes protocolos de transmissão em várias dimensões chave. A tabela abaixo fornece mais detalhes.</p>
+      <div class="chart-container">
+        <canvas id="protocolComparisonChart"></canvas>
+      </div>
+      <div class="table-container mt-4 overflow-x-auto">
+        <table id="protocolTable2" class="table table-bordered table-striped text-center align-middle">
+          <thead class="thead-dark">
+            <tr>
+              <th>Protocolo</th>
+              <th>Tipo</th>
+              <th>Latência Típica</th>
+              <th>Fiabilidade</th>
+              <th>Largura de Banda</th>
+              <th>Casos de Uso</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- Soluções Comerciais -->
@@ -970,6 +1159,90 @@ function toggleNav() {
 
 
 
+
+<!-- Fluxo de Funcionamento -->
+<section class="feature section-padding" id="fluxo">
+  <div class="container">
+    <h2 class="text-center mb-4" style="padding-left: 18rem;">Fluxo de Funcionamento</h2>
+    <span class="line mb-5 d-block mx-auto"></span>
+    
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="p-4 rounded" style="background: transparent !important;">
+          <div class="d-flex flex-column align-items-center">
+            <!-- Passo 1 -->
+            <div class="p-3 mb-3 rounded bg-info text-white text-center" style="width: 85%;">
+              <strong class="h5">1. Seleção de Áudio</strong><br>
+              <span class="small">Utilizador escolhe fonte e zonas (Interface Web)</span>
+            </div>
+            
+            <!-- Seta -->
+            <div class="text-center mb-3">
+              <i class="fas fa-chevron-down fa-2x text-info"></i>
+            </div>
+            
+            <!-- Passo 2 -->
+            <div class="p-3 mb-3 rounded bg-info text-white text-center" style="width: 85%;">
+              <strong class="h5">2. Processamento Nó Central</strong><br>
+              <span class="small">Mistura, Codificação (Opus), Geração SDP, Controlo UDP</span>
+            </div>
+            
+            <!-- Seta -->
+            <div class="text-center mb-3">
+              <i class="fas fa-chevron-down fa-2x text-info"></i>
+            </div>
+            
+            <!-- Passo 3 -->
+            <div class="p-3 mb-3 rounded bg-info text-white text-center" style="width: 85%;">
+              <strong class="h5">3. Transmissão Multicast</strong><br>
+              <span class="small">Nó Central envia via Wi-Fi para o Router</span>
+            </div>
+            
+            <!-- Seta -->
+            <div class="text-center mb-3">
+              <i class="fas fa-chevron-down fa-2x text-info"></i>
+            </div>
+            
+            <!-- Passo 4 -->
+            <div class="p-3 mb-3 rounded bg-info text-white text-center" style="width: 85%;">
+              <strong class="h5">4. Distribuição Wi-Fi</strong><br>
+              <span class="small">Router distribui para Nós Recetores</span>
+            </div>
+            
+            <!-- Seta -->
+            <div class="text-center mb-3">
+              <i class="fas fa-chevron-down fa-2x text-info"></i>
+            </div>
+            
+            <!-- Passo 5 -->
+            <div class="p-3 mb-3 rounded bg-info text-white text-center" style="width: 85%;">
+              <strong class="h5">5. Receção e Reprodução</strong><br>
+              <span class="small">Nós Recetores descodificam (ffplay) e reproduzem áudio</span>
+            </div>
+            
+            <!-- Seta -->
+            <div class="text-center mb-3">
+              <i class="fas fa-chevron-down fa-2x text-info"></i>
+            </div>
+            
+            <!-- Passo 6 -->
+            <div class="p-3 rounded bg-info text-white text-center" style="width: 85%;">
+              <strong class="h5">6. Controlo Dinâmico</strong><br>
+              <span class="small">Ajustes de volume/canal via pacotes de controlo</span>
+            </div>
+          </div>
+          
+          <p class="text-center mt-4 text-muted">
+            Este fluxo demonstra a coordenação entre o nó central e os recetores para uma difusão de áudio eficiente e personalizável.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- Secção de Testes -->
 <section class="feature section-padding" id="testes">
   <div class="container">
@@ -996,8 +1269,6 @@ Com base nessa análise, foi possível determinar configurações ideais de fram
 </section>
 
 
-
-
 <!-- Problemas Encontrados-->
 <section class="feature section-padding" id="problemas">
   <div class="container">
@@ -1005,22 +1276,38 @@ Com base nessa análise, foi possível determinar configurações ideais de fram
     <span class="line mb-4 d-block mx-auto"></span>
     <div class="row justify-content-center">
       <div class="col-md-10">
-        <div class="p-4 bg-white shadow rounded-3">
-          <div class="mb-3">
-            <i class="fas fa-exclamation-triangle fa-lg text-danger me-2"></i>
-            <strong>Situação:</strong>
-            <span>Pacotes RTP chegavam com atraso aos recetores, comprometendo a sincronização.</span>
+        <div class="p-5 bg-transparent rounded-3" style="border-left: 5px solid #dc3545; transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          
+          <div class="mb-4 d-flex align-items-center">
+            <div class="mr-4" style="background-color: rgba(220, 53, 69, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 20px;">
+              <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
+            </div>
+            <div>
+              <h4 class="font-weight-bold mb-1">Situação</h4>
+              <p class="mb-0" style="font-size: 18px;">Pacotes RTP chegavam com atraso aos recetores, comprometendo a sincronização.</p>
+            </div>
           </div>
-          <div class="mb-3">
-            <i class="fas fa-bolt fa-lg text-warning me-2"></i>
-            <strong>Impacto:</strong>
-            <span>Alta latência, áudio com falhas. Transmissão limitada a 1 Mbps (2.4GHz) ou 6 Mbps (5GHz).</span>
+          
+          <div class="mb-4 d-flex align-items-center">
+            <div class="mr-4" style="background-color: rgba(255, 193, 7, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 20px;">
+              <i class="fas fa-bolt fa-2x text-warning"></i>
+            </div>
+            <div>
+              <h4 class="font-weight-bold mb-1">Impacto</h4>
+              <p class="mb-0" style="font-size: 18px;">Alta latência, áudio com falhas. Transmissão limitada a 1 Mbps (2.4GHz) ou 6 Mbps (5GHz).</p>
+            </div>
           </div>
-          <div>
-            <i class="fas fa-wrench fa-lg text-success me-2"></i>
-            <strong>Solução:</strong>
-            <span>Configuração dos roteadores para usar apenas os modos 802.11n (2.4GHz) ou 802.11ac (5GHz), assegurando maior qualidade de transmissão.</span>
+          
+          <div class="d-flex align-items-center">
+            <div class="mr-4" style="background-color: rgba(40, 167, 69, 0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 20px;">
+              <i class="fas fa-wrench fa-2x text-success"></i>
+            </div>
+            <div>
+              <h4 class="font-weight-bold mb-1">Solução</h4>
+              <p class="mb-0" style="font-size: 18px;">Configuração dos roteadores para usar apenas os modos 802.11n (2.4GHz) ou 802.11ac (5GHz), assegurando maior qualidade de transmissão.</p>
+            </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -1168,6 +1455,72 @@ Com base nessa análise, foi possível determinar configurações ideais de fram
 </section>
 <!-------Tutors End-------> 
 
+<!-- Oportunidade de Mercado -->
+<section class="feature section-padding" id="oportunidade">
+  <div class="container-fluid text-center">
+    <h2 class="mb-4">Oportunidade de Mercado e Impacto</h2>
+    <span class="line mb-5"></span>
+    
+    <div class="row justify-content-center">
+      <div class="col-md-11">
+        <div class="p-5 shadow-lg" style="
+          background: linear-gradient(120deg, rgba(145, 197, 237, 0.9), rgba(176, 212, 245, 0.9), rgba(137, 195, 240, 0.9));
+          border-radius: 25px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 15px 35px rgba(37, 99, 188, 0.15);
+          transform: translateY(0);
+          transition: all 0.3s ease;
+        " onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 40px rgba(37, 99, 188, 0.25)';" 
+           onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 15px 35px rgba(37, 99, 188, 0.15)';">
+          
+          <!-- Efeito de esfumaçado nas bordas aprimorado -->
+          <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(255,255,255,0.6) 100%);
+            pointer-events: none;
+          "></div>
+          
+          <!-- Elemento decorativo flutuante -->
+          <div style="
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            z-index: 1;
+          "></div>
+          
+          <div style="position: relative; z-index: 2;">
+            <i class="fas fa-chart-line fa-3x mb-4" style="color: #1c5296; opacity: 0.85;"></i>
+            
+            <p style="font-size: 26px; margin-bottom: 30px; color: #1c5296; font-weight: 500; letter-spacing: 0.3px;">
+              Sistemas como o proposto têm o potencial de <strong style="color: #103567; text-shadow: 0 1px 2px rgba(255,255,255,0.5);">transformar a difusão de áudio</strong> em ambientes comerciais e institucionais.
+            </p>
+            
+            <div style="font-size: 56px; font-weight: 800; color: #1c5296; margin: 35px 0; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(255,255,255,0.7), -2px -2px 4px rgba(0,0,0,0.05);">
+              INOVAÇÃO
+            </div>
+            
+            <p style="font-size: 20px; color: #1c5296; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+              Ao reduzir custos, simplificar a instalação e aumentar a flexibilidade, esta abordagem <strong style="color: #103567; text-shadow: 0 1px 1px rgba(255,255,255,0.5);">democratiza o acesso</strong> a soluções de áudio multi-zona de nível profissional, abrindo novas possibilidades para uma vasta gama de negócios e instituições.
+            </p>
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <br>
 <br>
 
@@ -1232,6 +1585,247 @@ Com base nessa análise, foi possível determinar configurações ideais de fram
   });
 });
 
+// Modal para zoom nas imagens
+function openModal(img) {
+  document.getElementById("modalImage").src = img.src;
+  document.getElementById("imageModal").style.display = "block";
+}
 
+function closeModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
+
+// Código para o comparativo de mercado
+// Data para a Tabela 1 (Comparativo de Tecnologias)
+const techComparisonData = [
+  { name: "Dante", latency: 1, quality: "Profissional", scalability: "Alta", flexibility: "Baixa", cost: 3, useCases: "Auditórios, Estádios" },
+  { name: "AES67", latency: 25, quality: "Profissional", scalability: "Alta", flexibility: "Baixa", cost: 3, useCases: "Broadcast, Estúdios" },
+  { name: "Sonos", latency: 60, quality: "Alta Fidelidade", scalability: "Média", flexibility: "Alta", cost: 2, useCases: "Doméstico, Pequenos Comércios" },
+  { name: "Bose SoundTouch", latency: 70, quality: "Premium", scalability: "Média", flexibility: "Alta", cost: 2, useCases: "Doméstico" },
+  { name: "Yamaha MusicCast", latency: 65, quality: "Alta Fidelidade", scalability: "Média", flexibility: "Alta", cost: 2, useCases: "Doméstico, Smart Home" },
+  { name: "AV over IP (Geral)", latency: 30, quality: "Profissional", scalability: "Alta", flexibility: "Alta", cost: 2.5, useCases: "Digital Signage, Eventos" },
+  { name: "UWB", latency: 5, quality: "Lossless", scalability: "Baixa", flexibility: "Alta", cost: 1.5, useCases: "Hi-Fi, Gaming" },
+  { name: "5G mmWave", latency: 1, quality: "Ultra-HD", scalability: "Muito Alta", flexibility: "Alta", cost: 3, useCases: "Eventos de Massa, AR/VR" },
+  { name: "Bluetooth LE Audio", latency: 10, quality: "Alta Fidelidade", scalability: "Baixa", flexibility: "Alta", cost: 1, useCases: "Acessórios Pessoais" },
+  { name: "Projeto Atual", latency: 50, quality: "Alta Fidelidade (alvo)", scalability: "Média", flexibility: "Alta", cost: 1, useCases: "Hotéis, Centros Comerciais" }
+];
+
+let techChart;
+$(document).ready(function() {
+  const techLatencyFilter = document.getElementById('tech-filter-latency');
+  const techLatencyValue = document.getElementById('tech-filter-latency-value');
+  const techCostFilter = document.getElementById('tech-filter-cost');
+
+  function updateTechChart() {
+    const maxLatency = parseInt(techLatencyFilter.value);
+    techLatencyValue.textContent = `${maxLatency} ms`;
+    const maxCost = parseInt(techCostFilter.value);
+
+    const filteredData = techComparisonData.filter(item => {
+      let costFilterActive = true;
+      if (maxCost == 1) costFilterActive = item.cost <= 1.5;
+      else if (maxCost == 2) costFilterActive = (item.cost > 1.5 && item.cost <= 2.5);
+      // if maxCost == 3 ("Todos"), no cost filtering, so costFilterActive remains true.
+      
+      return item.latency <= maxLatency && costFilterActive;
+    });
+
+    if (techChart) {
+      techChart.destroy();
+    }
+    techChart = new Chart(document.getElementById('techComparisonChart'), {
+      type: 'bar',
+      data: {
+        labels: filteredData.map(item => item.name),
+        datasets: [{
+          label: 'Latência Típica (ms)',
+          data: filteredData.map(item => item.latency),
+          backgroundColor: 'rgba(56, 189, 248, 0.6)', // sky-400
+          borderColor: 'rgba(2, 132, 199, 1)', // sky-600
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: { y: { beginAtZero: true, title: { display: true, text: 'Latência (ms)' } } },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) { label += ': '; }
+                if (context.parsed.y !== null) { label += context.parsed.y + ' ms'; }
+                const item = filteredData[context.dataIndex];
+                return [label, `Custo: ${item.cost <= 1.5 ? 'Baixo' : item.cost <= 2.5 ? 'Médio' : 'Elevado'}` , `Qualidade: ${item.quality}`];
+              }
+            }
+          },
+          legend: { display: false }
+        }
+      }
+    });
+    
+    populateTable('techTable1', filteredData, ['name', 'latency', 'quality', 'scalability', 'flexibility', 'cost', 'useCases']);
+  }
+  
+  // Data para a Tabela 2 (Comparativo de Protocolos)
+  const protocolComparisonData = [
+    { name: "UDP Multicast", type: "Transporte", latency: 1, reliability: 2, bandwidth: 3, useCases: "Tempo Real, Difusão" },
+    { name: "RTP", type: "Transporte", latency: 2, reliability: 2, bandwidth: 2, useCases: "Tempo Real, Streaming" },
+    { name: "RTSP", type: "Controlo", latency: 2, reliability: 3, bandwidth: 1, useCases: "Controlo de Streaming" },
+    { name: "Icecast", type: "Streaming", latency: 3, reliability: 3, bandwidth: 2, useCases: "Rádio Online" },
+    { name: "WebRTC", type: "Comunicação P2P", latency: 2, reliability: 3, bandwidth: 2, useCases: "Videoconferência" },
+    { name: "MQTT Audio", type: "Mensageria", latency: 3, reliability: 3, bandwidth: 3, useCases: "IoT, Redes Distribuídas" },
+    { name: "SRT", type: "Transporte", latency: 2, reliability: 3, bandwidth: 3, useCases: "Streaming Ao Vivo" },
+    { name: "NDI", type: "Transporte/Controlo", latency: 1, reliability: 3, bandwidth: 1, useCases: "Produção Profissional" }
+  ];
+  
+  // Score mapping for radar: Higher is better. Latency: 1(VL)=5, 2(L)=4, 3(M)=3. Reliability: 2(BE)=2, 3(G)=5. Bandwidth: 3(Eff)=5, 2(Mod)=3, 1(Low/HighUse)=1.
+  const protocolRadarData = protocolComparisonData.map(p => ({
+    name: p.name,
+    type: p.type,
+    useCases: p.useCases,
+    values: [
+      p.latency === 1 ? 5 : p.latency === 2 ? 4 : 3, // Latency (inverted: lower ms is better score)
+      p.reliability === 2 ? 2 : 5, // Reliability
+      p.bandwidth === 3 ? 5 : p.bandwidth === 2 ? 3 : 1 // Bandwidth Efficiency
+    ]
+  }));
+
+  // Função para inicializar o gráfico de protocolos
+  function initProtocolChart() {
+    if (!document.getElementById('protocolComparisonChart')) {
+      console.error("Protocol chart element not found");
+      return;
+    }
+    
+    try {
+      new Chart(document.getElementById('protocolComparisonChart'), {
+        type: 'radar',
+        data: {
+          labels: ['Baixa Latência', 'Alta Fiabilidade', 'Eficiência de Largura de Banda'],
+          datasets: protocolRadarData.slice(0, 4).map((item, index) => ({
+            label: item.name,
+            data: item.values,
+            fill: true,
+            backgroundColor: `rgba(${index * 60 + 50}, ${180 - index * 30}, ${200 + index * 10}, 0.2)`,
+            borderColor: `rgb(${index * 60 + 50}, ${180 - index * 30}, ${200 + index * 10})`,
+            pointBackgroundColor: `rgb(${index * 60 + 50}, ${180 - index * 30}, ${200 + index * 10})`
+          }))
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          elements: { line: { borderWidth: 2 } },
+          scales: { r: { angleLines: { display: true }, suggestedMin: 0, suggestedMax: 5, pointLabels: { font: { size: 10 } }, ticks: { stepSize: 1 } } },
+          plugins: { tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': ' + context.raw; }}}}
+        }
+      });
+      console.log("Protocol chart initialized");
+    } catch (err) {
+      console.error("Error initializing protocol chart:", err);
+    }
+  }
+  
+  // Inicializar os eventos dos filtros
+  if (techLatencyFilter) {
+    techLatencyFilter.addEventListener('input', updateTechChart);
+  }
+  if (techCostFilter) {
+    techCostFilter.addEventListener('change', updateTechChart);
+  }
+  
+  // Adicionar um evento mais robusto para inicializar os gráficos
+  function initializeCharts() {
+    console.log("Initializing charts and tables");
+    
+    // Popular as tabelas primeiro
+    try {
+      populateTable('techTable1', techComparisonData, ['name', 'latency', 'quality', 'scalability', 'flexibility', 'cost', 'useCases']);
+      populateTable('protocolTable2', protocolComparisonData, ['name', 'type', 'latency', 'reliability', 'bandwidth', 'useCases']);
+      console.log("Tables populated");
+    } catch (err) {
+      console.error("Error populating tables:", err);
+    }
+    
+    // Inicializar os gráficos
+    try {
+      if (document.getElementById('techComparisonChart')) {
+        console.log("Initializing tech chart");
+        updateTechChart();
+      } else {
+        console.error("Tech chart element not found");
+      }
+    } catch (err) {
+      console.error("Error initializing tech chart:", err);
+    }
+    
+    try {
+      if (document.getElementById('protocolComparisonChart')) {
+        console.log("Initializing protocol chart");
+        initProtocolChart();
+      } else {
+        console.error("Protocol chart element not found");
+      }
+    } catch (err) {
+      console.error("Error initializing protocol chart:", err);
+    }
+  }
+  
+  // Tenta inicializar após um tempo e também após o carregamento completo da página
+  setTimeout(initializeCharts, 1000);
+  
+  $(window).on('load', function() {
+    console.log("Window load event via jQuery");
+    setTimeout(initializeCharts, 500);
+  });
+});
+
+function populateTable(tableId, data, columns) {
+  const tableElement = document.getElementById(tableId);
+  if (!tableElement) {
+    console.error(`Table element with ID '${tableId}' not found`);
+    return;
+  }
+  
+  const tableBody = tableElement.getElementsByTagName('tbody')[0];
+  if (!tableBody) {
+    console.error(`Table body for '${tableId}' not found`);
+    return;
+  }
+  
+  tableBody.innerHTML = ''; // Clear existing rows
+  data.forEach(item => {
+    const row = tableBody.insertRow();
+    columns.forEach(col => {
+      const cell = row.insertCell();
+      let value = item[col];
+      if (col === 'cost') {
+        value = value <= 1.5 ? 'Baixo' : value <= 2.5 ? 'Médio' : 'Elevado';
+      } else if (col === 'latency' && tableId === 'techTable1') {
+        value = `${value} ms`;
+      } else if (col === 'latency' && tableId === 'protocolTable2') {
+        value = value === 1 ? 'Muito Baixa' : value === 2 ? 'Baixa' : 'Média';
+      } else if (col === 'reliability' && tableId === 'protocolTable2') {
+        value = value === 2 ? 'Best-effort' : 'Garantida';
+      } else if (col === 'bandwidth' && tableId === 'protocolTable2') {
+        value = value === 3 ? 'Eficiente' : value === 2 ? 'Moderada' : 'Baixa (ou Alto Uso)';
+      }
+      cell.textContent = value !== undefined ? value : '-';
+    });
+  });
+  
+  console.log(`Table '${tableId}' populated with ${data.length} rows`);
+}
+
+// Adicionar evento para quando a página terminar de carregar completamente
+window.addEventListener('load', function() {
+  console.log("Window load event fired - page fully loaded");
+  console.log("techComparisonChart element exists:", !!document.getElementById('techComparisonChart'));
+  console.log("protocolComparisonChart element exists:", !!document.getElementById('protocolComparisonChart'));
+  console.log("techTable1 element exists:", !!document.getElementById('techTable1'));
+  console.log("protocolTable2 element exists:", !!document.getElementById('protocolTable2'));
+});
 
 </script>
