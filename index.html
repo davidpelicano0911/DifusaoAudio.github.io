@@ -739,11 +739,15 @@ function toggleNav() {
       <p class="small mb-3">Este gráfico radar compara diferentes protocolos de transmissão em várias dimensões chave. A tabela abaixo fornece mais detalhes.</p>
       <div class="chart-container">
         <canvas id="protocolComparisonChart"></canvas>
+        <div class="protocol-legend mt-3 d-flex flex-wrap justify-content-center align-items-center">
+        <!-- Legend items will be added here dynamically -->
+      </div>
       </div>
       <div class="table-container mt-4 overflow-x-auto">
         <table id="protocolTable2" class="table table-bordered table-striped text-center align-middle">
           <thead class="thead-dark">
             <tr>
+              <th>Mostrar</th> <!-- Nova Coluna Adicionada -->
               <th>Protocolo</th>
               <th>Tipo</th>
               <th>Latência Típica</th>
@@ -1537,6 +1541,33 @@ Com base nessa análise, foi possível determinar configurações ideais de fram
 </footer>
 
 <script>
+
+    // Data para a Tabela 2 (Comparativo de Protocolos)
+  const protocolComparisonData = [
+    { name: "UDP Multicast", type: "Transporte", latency: 1, reliability: 2, bandwidth: 3, useCases: "Tempo Real, Difusão" },
+    { name: "RTP", type: "Transporte", latency: 2, reliability: 2, bandwidth: 2, useCases: "Tempo Real, Streaming" },
+    { name: "RTSP", type: "Controlo", latency: 2, reliability: 3, bandwidth: 1, useCases: "Controlo de Streaming" },
+    { name: "Icecast", type: "Streaming", latency: 3, reliability: 3, bandwidth: 2, useCases: "Rádio Online" },
+    { name: "WebRTC", type: "Comunicação P2P", latency: 2, reliability: 3, bandwidth: 2, useCases: "Videoconferência" },
+    { name: "MQTT Audio", type: "Mensageria", latency: 3, reliability: 3, bandwidth: 3, useCases: "IoT, Redes Distribuídas" },
+    { name: "SRT", type: "Transporte", latency: 2, reliability: 3, bandwidth: 3, useCases: "Streaming Ao Vivo" },
+    { name: "NDI", type: "Transporte/Controlo", latency: 1, reliability: 3, bandwidth: 1, useCases: "Produção Profissional" }
+  ];
+  
+  // Score mapping for radar: Higher is better. Latency: 1(VL)=5, 2(L)=4, 3(M)=3. Reliability: 2(BE)=2, 3(G)=5. Bandwidth: 3(Eff)=5, 2(Mod)=3, 1(Low/HighUse)=1.
+  const protocolRadarData = protocolComparisonData.map(p => ({
+    name: p.name,
+    type: p.type,
+    useCases: p.useCases,
+    values: [
+      p.latency === 1 ? 5 : p.latency === 2 ? 4 : 3, // Latency (inverted: lower ms is better score)
+      p.reliability === 2 ? 2 : 5, // Reliability
+      p.bandwidth === 3 ? 5 : p.bandwidth === 2 ? 3 : 1 // Bandwidth Efficiency
+    ]
+  }));
+
+  let protocolChart;
+
   $(document).ready(function() {
     // Seletor para todos os links na navbar que possuem um "href" iniciando com "#"
     $('.w3-bar a[href^="#"], .w3-bar-block a[href^="#"]').on('click', function(event) {
@@ -1668,61 +1699,75 @@ $(document).ready(function() {
     
     populateTable('techTable1', filteredData, ['name', 'latency', 'quality', 'scalability', 'flexibility', 'cost', 'useCases']);
   }
-  
-  // Data para a Tabela 2 (Comparativo de Protocolos)
-  const protocolComparisonData = [
-    { name: "UDP Multicast", type: "Transporte", latency: 1, reliability: 2, bandwidth: 3, useCases: "Tempo Real, Difusão" },
-    { name: "RTP", type: "Transporte", latency: 2, reliability: 2, bandwidth: 2, useCases: "Tempo Real, Streaming" },
-    { name: "RTSP", type: "Controlo", latency: 2, reliability: 3, bandwidth: 1, useCases: "Controlo de Streaming" },
-    { name: "Icecast", type: "Streaming", latency: 3, reliability: 3, bandwidth: 2, useCases: "Rádio Online" },
-    { name: "WebRTC", type: "Comunicação P2P", latency: 2, reliability: 3, bandwidth: 2, useCases: "Videoconferência" },
-    { name: "MQTT Audio", type: "Mensageria", latency: 3, reliability: 3, bandwidth: 3, useCases: "IoT, Redes Distribuídas" },
-    { name: "SRT", type: "Transporte", latency: 2, reliability: 3, bandwidth: 3, useCases: "Streaming Ao Vivo" },
-    { name: "NDI", type: "Transporte/Controlo", latency: 1, reliability: 3, bandwidth: 1, useCases: "Produção Profissional" }
-  ];
-  
-  // Score mapping for radar: Higher is better. Latency: 1(VL)=5, 2(L)=4, 3(M)=3. Reliability: 2(BE)=2, 3(G)=5. Bandwidth: 3(Eff)=5, 2(Mod)=3, 1(Low/HighUse)=1.
-  const protocolRadarData = protocolComparisonData.map(p => ({
-    name: p.name,
-    type: p.type,
-    useCases: p.useCases,
-    values: [
-      p.latency === 1 ? 5 : p.latency === 2 ? 4 : 3, // Latency (inverted: lower ms is better score)
-      p.reliability === 2 ? 2 : 5, // Reliability
-      p.bandwidth === 3 ? 5 : p.bandwidth === 2 ? 3 : 1 // Bandwidth Efficiency
-    ]
-  }));
 
   // Função para inicializar o gráfico de protocolos
   function initProtocolChart() {
-    if (!document.getElementById('protocolComparisonChart')) {
+    const chartElement = document.getElementById('protocolComparisonChart');
+    if (!chartElement) {
       console.error("Protocol chart element not found");
       return;
     }
     
     try {
-      new Chart(document.getElementById('protocolComparisonChart'), {
+      // Destruir gráfico anterior se existir, para evitar duplicação
+      if (protocolChart) {
+        protocolChart.destroy();
+      }
+
+      protocolChart = new Chart(chartElement, { // Atribui à variável protocolChart
         type: 'radar',
         data: {
           labels: ['Baixa Latência', 'Alta Fiabilidade', 'Eficiência de Largura de Banda'],
-          datasets: protocolRadarData.slice(0, 4).map((item, index) => ({
-            label: item.name,
-            data: item.values,
-            fill: true,
-            backgroundColor: `rgba(${index * 60 + 50}, ${180 - index * 30}, ${200 + index * 10}, 0.2)`,
-            borderColor: `rgb(${index * 60 + 50}, ${180 - index * 30}, ${200 + index * 10})`,
-            pointBackgroundColor: `rgb(${index * 60 + 50}, ${180 - index * 30}, ${200 + index * 10})`
-          }))
+          // Mapear TODOS os protocolRadarData, não apenas .slice(0,4)
+          datasets: protocolRadarData.map((item, originalIndex) => {
+            const protocolNameForDataset = item.name;
+            // Verificar o estado da checkbox correspondente para visibilidade inicial
+            const correspondingCheckbox = document.querySelector(`#protocolTable2 input[data-protocol-name="${protocolNameForDataset}"]`);
+            const initiallyVisible = correspondingCheckbox ? correspondingCheckbox.checked : false;
+
+            // Cores baseadas no originalIndex para consistência
+            // Usar módulo para repetir cores se houver mais de 8 protocolos para melhor distinção visual
+            const colorHueBase = (originalIndex * 45) % 360; // Distribui Hues
+            const bgColor = `hsla(${colorHueBase}, 70%, 60%, 0.2)`;
+            const borderColor = `hsla(${colorHueBase}, 70%, 50%, 1)`;
+
+            return {
+                label: item.name,
+                data: item.values,
+                fill: true,
+                backgroundColor: bgColor,
+                borderColor: borderColor,
+                pointBackgroundColor: borderColor,
+                hidden: !initiallyVisible // Define a visibilidade inicial baseada na checkbox
+            };
+          })
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
           elements: { line: { borderWidth: 2 } },
-          scales: { r: { angleLines: { display: true }, suggestedMin: 0, suggestedMax: 5, pointLabels: { font: { size: 10 } }, ticks: { stepSize: 1 } } },
-          plugins: { tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': ' + context.raw; }}}}
+          scales: { 
+            r: { 
+              angleLines: { display: true }, 
+              suggestedMin: 0, 
+              suggestedMax: 5, 
+              pointLabels: { font: { size: 10 } }, 
+              ticks: { stepSize: 1 } 
+            } 
+          },
+          plugins: { 
+            tooltip: { 
+              callbacks: { 
+                label: function(context) { return context.dataset.label + ': ' + context.raw; }
+              }
+            },
+            legend: {
+                onClick: null // Desabilita a funcionalidade de clique na legenda
+            }
+          }
         }
       });
-      console.log("Protocol chart initialized");
+      // console.log("Protocol chart initialized/updated"); // Descomente para depuração
     } catch (err) {
       console.error("Error initializing protocol chart:", err);
     }
@@ -1798,25 +1843,56 @@ function populateTable(tableId, data, columns) {
   tableBody.innerHTML = ''; // Clear existing rows
   data.forEach(item => {
     const row = tableBody.insertRow();
-    columns.forEach(col => {
+
+    if (tableId === 'protocolTable2') {
+        const showCell = row.insertCell(); // Célula para a checkbox (primeira célula)
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'protocol-visibility-checkbox';
+        checkbox.setAttribute('data-protocol-name', item.name); // 'item' aqui é um elemento de 'protocolComparisonData'
+
+        // Encontrar o índice do protocolo nos dados originais para decidir o estado inicial
+        // Vamos manter a lógica de ter os primeiros 4 visíveis inicialmente
+        const protocolIndexInOriginalData = protocolComparisonData.findIndex(p => p.name === item.name);
+        if (protocolIndexInOriginalData !== -1 && protocolIndexInOriginalData < 4) { 
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+
+        checkbox.addEventListener('change', function() {
+            if (!protocolChart) return; // Salvaguarda
+            const protocolName = this.getAttribute('data-protocol-name');
+            const isChecked = this.checked;
+            // Encontrar o dataset correspondente pelo label (nome do protocolo)
+            const datasetIndex = protocolChart.data.datasets.findIndex(d => d.label === protocolName);
+            if (datasetIndex !== -1) {
+                protocolChart.setDatasetVisibility(datasetIndex, isChecked);
+                protocolChart.update();
+            }
+        });
+        showCell.appendChild(checkbox);
+    }
+
+    columns.forEach(colKey => { // colKey é 'name', 'type', etc., conforme a lista 'columns'
       const cell = row.insertCell();
-      let value = item[col];
-      if (col === 'cost') {
+      let value = item[colKey];
+      if (colKey === 'cost') { // Aplicável à tabela de tecnologias, não de protocolos
         value = value <= 1.5 ? 'Baixo' : value <= 2.5 ? 'Médio' : 'Elevado';
-      } else if (col === 'latency' && tableId === 'techTable1') {
+      } else if (colKey === 'latency' && tableId === 'techTable1') {
         value = `${value} ms`;
-      } else if (col === 'latency' && tableId === 'protocolTable2') {
+      } else if (colKey === 'latency' && tableId === 'protocolTable2') {
         value = value === 1 ? 'Muito Baixa' : value === 2 ? 'Baixa' : 'Média';
-      } else if (col === 'reliability' && tableId === 'protocolTable2') {
+      } else if (colKey === 'reliability' && tableId === 'protocolTable2') {
         value = value === 2 ? 'Best-effort' : 'Garantida';
-      } else if (col === 'bandwidth' && tableId === 'protocolTable2') {
+      } else if (colKey === 'bandwidth' && tableId === 'protocolTable2') {
         value = value === 3 ? 'Eficiente' : value === 2 ? 'Moderada' : 'Baixa (ou Alto Uso)';
       }
       cell.textContent = value !== undefined ? value : '-';
     });
   });
   
-  console.log(`Table '${tableId}' populated with ${data.length} rows`);
+  // console.log(`Table '${tableId}' populated with ${data.length} rows`); // Descomente para depuração se necessário
 }
 
 // Adicionar evento para quando a página terminar de carregar completamente
